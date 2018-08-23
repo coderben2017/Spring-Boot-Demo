@@ -1,0 +1,1 @@
+application.properties和application.yml都可以被SpringBoot识别，二者只有写法的不同，项目中存在一个即可。
