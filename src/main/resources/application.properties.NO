@@ -1,0 +1,5 @@
+# server
+server.port=8081
+
+# user-defined
+user.time = 2018/08/xx
