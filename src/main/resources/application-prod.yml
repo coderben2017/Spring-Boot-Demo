@@ -1,0 +1,6 @@
+server:
+  port: 8082
+user:
+  name: Bob
+  age: 19
+  port: ${server.port}

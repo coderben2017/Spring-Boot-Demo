@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-
-import org.springframework.beans.factory.annotation.Value;
+import com.example.demo.model.UserProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,15 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    @Value("${user.name}") // 居然自己获取系统的
-    private String name;
+    private final UserProperties userProperties;
 
-    @Value("${user.time}")
-    private String time;
+    @Autowired
+    public UserController(UserProperties userProperties) {
+        this.userProperties = userProperties;
+    }
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String sayHello() {
-        return "Hello " + name + "\n time: " + time;
+        return "Hello " + userProperties.getName() +
+                "......you are " + userProperties.getAge() + " years old." +
+                "......server use the " + userProperties.getPort() + " port";
     }
 
 }
