@@ -1,3 +1,17 @@
 spring:
   profiles:
     active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springboot_example?useSSL=false
+    username: root
+    password: jinben
+  jpa:
+    hibernate:
+        ddl-auto: update
+#       ddl-auto: validate 验证表结构
+#       ddl-auto: none     # disable ddl handle
+#       ddl-auto: create 每次都会创建表 如果表存在就会先drop再create
+#       ddl-auto: update 表不存在就create 表存在就update
+#       ddl-auto: create-drop 程序结束后会把表drop掉
+    show-sql: true         # 控制台打印sql，便于调试
