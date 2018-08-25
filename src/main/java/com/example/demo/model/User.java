@@ -3,6 +3,7 @@ package com.example.demo.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
 
 @Entity
 public class User {
@@ -15,6 +16,7 @@ public class User {
 
     private String gender;
 
+    @Min(value = 18, message = "用户未满18岁")
     private Integer age;
 
     public Integer getId() {
