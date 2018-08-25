@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.UserRepository;
-import com.example.demo.model.User;
+import com.example.demo.data.User;
+import com.example.demo.enums.ResultEnum;
 import com.example.demo.service.UserService;
+import com.example.demo.util.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ public class UserController {
     private UserService userService;
 
     private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+
 
     @GetMapping(value = "/users")
     public List<User> getAllUsers() {
@@ -47,12 +50,11 @@ public class UserController {
     }
 
     @PostMapping(value = "/user")
-    public User addUser(@Valid User user, BindingResult bindingResult) {
+    public Object addUser(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            logger.info(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtil.error(ResultEnum.AGE_LITTLE.getCode(), ResultEnum.AGE_LITTLE.getMessage());
         }
-        return userRepository.save(user);
+        return ResultUtil.success(userRepository.save(user));
     }
 
     @PutMapping(value = "/user")
@@ -73,4 +75,8 @@ public class UserController {
         userRepository.deleteById(id);
     }
 
+    @GetMapping(value = "/user/age")
+    public Object getUserAge(@RequestParam(value = "id") Integer id) throws Exception {
+        return userService.getAgeById(id);
+    }
 }
