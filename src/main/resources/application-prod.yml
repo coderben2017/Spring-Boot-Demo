@@ -1,6 +1,16 @@
 server:
   port: 8082
+
 user:
   name: Bob
   age: 19
   port: ${server.port}
+
+# 启动热部署
+# 设置重启目录
+spring:
+  devtools:
+    remote:
+      restart:
+        enabled: true
+        additional-paths: src/main/java
