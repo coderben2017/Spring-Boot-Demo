@@ -4,6 +4,8 @@ import com.example.demo.data.HelloProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @RestController
 public class HelloController {
 
@@ -28,7 +30,12 @@ public class HelloController {
 
     // 简单GET、POST等
     @GetMapping("/hello/user")
-    public String getUser(@RequestParam(value = "id", required = false, defaultValue = "0") Integer id) {
-        return "select user where id = " + id;
+    public Object getUser() {
+        HelloProperties hello = new HelloProperties();
+        hello.setName("hello");
+        hello.setBirthday(new Date());
+        hello.setDescription(null);
+        return hello;
     }
+
 }
