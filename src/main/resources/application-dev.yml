@@ -1,16 +1,20 @@
+# tomcat设置
 server:
-  port: 8081
+  port: 8081            # 端口号
+  tomcat:
+    max-threads: 200    # 最大线程数
+    uri-encoding: UTF-8 # 统一tomcat字符编码
 
-user:
-  name: Mike
-  age: 20
-  port: ${server.port}
-
-# 启动热部署
-# 设置重启目录
+# 热部署设置
 spring:
   devtools:
     remote:
       restart:
-        enabled: true
-        additional-paths: src/main/java
+        enabled: true                   # 激活
+        additional-paths: src/main/java # 配置更新路径
+
+# 自定义数据
+user:
+  name: Mike
+  age: 20
+  port: ${server.port}
