@@ -1,17 +1,31 @@
 # tomcat设置
 server:
-  port: 8081            # 端口号
+  port: 8081                            # 端口号
   tomcat:
-    max-threads: 200    # 最大线程数
-    uri-encoding: UTF-8 # 统一tomcat字符编码
+    max-threads: 200                    # 最大线程数
+    uri-encoding: UTF-8                 # 统一tomcat字符编码
 
-# 热部署设置
+
+# Spring插件
 spring:
+  # 热部署
   devtools:
     remote:
       restart:
         enabled: true                   # 激活
         additional-paths: src/main/java # 配置更新路径
+  # 模板引擎
+  freemarker:
+    template-loader-path: classpath:/templates
+    cache: false                        # 关闭缓存以便及时刷新，生产环境需要开启
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
+
 
 # 自定义数据
 user:

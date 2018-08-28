@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Component
 @ConfigurationProperties(prefix = "user")
-public class HelloProperties {
+public class Hello {
 
     private String name;
 
