@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link th:href="@{/static/css/base.css}" />
+    <script th:src="@{/static/js/main.js}"></script>
+</head>
+
+<body>
+    <h1>thymeleaf模板引擎</h1>
+
+    <p th:text="${hello.name}">名字没显示</p><!-- text以文本格式解析 -->
+
+    <p th:utext="${hello.age}">年龄没显示</p><!-- utext以html格式解析 -->
+
+    <p th:if="${hello.age > 18}" style="color: #00f">用户已经年满18</p>
+
+    <p>用户年龄：<input th:id="${hello.port}" th:name="${hello.name}" th:value="${hello.age}" type="number" /></p>
+
+    <select>
+        <option th:selected="${hello.name eq 'jinben01'}">是本人</option>
+        <option th:selected="${hello.name eq ''}">不是本人</option>
+    </select>
+
+    <ul>
+        <li th:each="str : ${list}" th:text="${str}"></li>
+    </ul>
+
+    <div th:switch="${hello.age}">
+        <p th:case="${18}">switch...case: 18岁</p>
+        <p th:case="${19}">switch...case: 19岁</p>
+        <p th:case="${20}">switch...case: 20岁</p>
+        <p th:case="*">switch...case: 其他</p>
+    </div>
+
+    <p></p>
+
+    <button th:onclick="'printHello(\''+ ${hello.name} +'\')'">打印欢迎信息</button>
+</body>
+
+<script>
+    function printHello(name) {
+        alert('欢迎您 ' + name)
+    }
+</script>
+</html>

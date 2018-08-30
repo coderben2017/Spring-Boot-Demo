@@ -13,8 +13,8 @@ spring:
     remote:
       restart:
         enabled: true                   # 激活
-        additional-paths: src/main/java # 配置更新路径
-  # 模板引擎
+        additional-paths: src/main/java # 配置更新路径（前端不需编译所以只更新java）
+  # 模板引擎 - freemarker
   freemarker:
     template-loader-path: classpath:/templates
     cache: false                        # 关闭缓存以便及时刷新，生产环境需要开启
@@ -25,7 +25,20 @@ spring:
     expose-session-attributes: true
     request-context-attribute: request
     suffix: .ftl
-
+  # 模板引擎 - thymeleaf
+  thymeleaf:
+    cache: false                        # 关闭缓存以便及时刷新，生产环境需要开启
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  # redis配置
+  redis:
+    database: 1
+    host:
 
 # 自定义数据
 user:

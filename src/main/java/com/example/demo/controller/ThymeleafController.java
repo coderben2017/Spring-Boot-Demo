@@ -6,9 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
-@RequestMapping("fr")
-public class FreeMarkerController {
+@RequestMapping("th")
+public class ThymeleafController {
 
     @Autowired
     private Hello hello;
@@ -16,12 +19,16 @@ public class FreeMarkerController {
     @RequestMapping("/index")
     public String index(ModelMap map) {
         map.addAttribute("hello", hello);
-        return "freemarker/index";
+        List<String> list = new ArrayList<>();
+        list.add("hahaha");
+        list.add("lalala");
+        map.addAttribute("list", list);
+        return "thymeleaf/index";
     }
 
     @RequestMapping("index/center")
     public String center() {
-        return "freemarker/center/center";
+        return "thymeleaf/center/center";
     }
 
 }
